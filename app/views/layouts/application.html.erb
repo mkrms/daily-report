@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Report</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark sticky-top mb-3">
+      <a href="/" class="navbar-brand">Daily Report :RwG</a>
+
+      <div class='float-right'>
+      <%= link_to 'Top', root_path, class: 'btn btn-light'%>
+      </div>
+    </nav>
+
+    <div class = 'container nav-justified'>
+    <%= yield %>
+    </div>
+  </body>
+</html>

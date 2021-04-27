@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team: MyString
+  body: MyText
+  date: 2021-04-26
+
+two:
+  team: MyString
+  body: MyText
+  date: 2021-04-26
