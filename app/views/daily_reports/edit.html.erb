@@ -1,17 +1,40 @@
 <%=form_for (@daily_report) do |f| %>
+    <label>投稿者</label>
+    <div class = 'form-group pb-3'>
+        <%= f.text_field :username, class: 'form-control'%>
+    </div>
+
+    <hr>
+
+    <div class = 'row py-3'>
+    <div class = 'col-md-4'>
     <label>タイトル</label>
     <div class ='form-group'>
         <%= f.select :title, [['スクリム', 'スクリム'], ['研究', '研究'], ['その他', 'その他']], include_blank: "選択して下さい", class: 'form-control'%>
     </div>
-        
-    <label>チームを選択してください</label>
-    <div class ='form-group'>
-        <label><%= f.radio_button :team, 'A'%> A <label>
-        <label><%= f.radio_button :team, 'B'%> B <label>
     </div>
+
+    <div class = 'col-md-4'>
+        <label>日付</label>
+        <div class ='form-group'>
+            <%= f.date_select :date, class: 'form-control'%>
+        </div>
+    </div>
+
+    <div class = 'col-md-4'>
+        <label>チームを選択してください</label>
+        <div class ='form-group'>
+            A <label><%= f.radio_button :team, 'A'%></label>　　
+            B <label><%= f.radio_button :team, 'B'%></label>
+        </div>
+    </div>
+
+    </div>
+
+    <hr>
         <label>活動内容・反省等</label>
-        <%= f.text_area :body, class: 'form-control', rows: 10%>
-        <%= f.hidden_field :date, value: Date.today, class: 'form-control'%>
+        <%= f.hidden_field :body, id: :daily_report_body, class: 'form-control'%>
+        <trix-editor rows = '10', input="daily_report_body"></trix-editor>
         <%= f.submit '更新', class: 'form-control mt-3 btn btn-primary'%>
     </div>
 <%end%>

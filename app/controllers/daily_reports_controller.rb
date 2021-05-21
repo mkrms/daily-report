@@ -16,10 +16,10 @@ class DailyReportsController < ApplicationController
 
  def create
    @daily_report = DailyReport.new(report_params)
-   if @daily_report.save!
+   if @daily_report.save
     redirect_to daily_reports_path
    else
-    render :new
+    render 'new'
    end
  end
 
@@ -27,7 +27,7 @@ class DailyReportsController < ApplicationController
   if @daily_report.update(report_params)
     redirect_to daily_reports_path
   else
-    render :edit
+    render 'edit'
   end
  end
 
@@ -35,7 +35,7 @@ class DailyReportsController < ApplicationController
    if @daily_report.destroy
     redirect_to daily_reports_path
    else
-    render :edit
+    render 'edit'
    end
  end
 
@@ -46,6 +46,6 @@ class DailyReportsController < ApplicationController
 end
 
 def report_params
-  params.require(:daily_report).permit(:title, :team, :body, :date)
+  params.require(:daily_report).permit(:title, :team, :body, :date, :username)
 end
 end

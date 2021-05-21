@@ -1,9 +1,10 @@
 <div class ='border p-3 mb-3'>
-    <ul class ='h3'>
+    <ul class =''>
+        <li class ='mt-3'>投稿者:　<%= @daily_report.username%></li>
         <li class ='mt-3'>タイトル:　<%= @daily_report.title%></li>
         <li class ='mt-3'>日付:　　　<%= @daily_report.date%></li>
         <li class ='mt-3'>内容:</li>
-        <div class ='mt-2'><%= simple_format(@daily_report.body) %></div>
+        <div class ='mt-2'><%= sanitize @daily_report.body %></div>
     </ul>
 
 </div>
