@@ -1,0 +1,14 @@
+<%=form_for (@event) do |f| %>
+    <div class = 'form-group'>
+    <label>タイトル：</label>
+    <%= f.text_field :title, class: 'form-control mb-2'%>
+    <label>詳細：</label>
+    <%= f.text_area :body, class: 'form-control'%>
+    </div>
+
+    <div class ='form-inline'>
+    <label>期限：</label>
+    <%= f.date_field :start_date, class: 'form-control mr-2'%>~<%= f.date_field :end_date, class: 'form-control ml-2'%>
+    </div>
+    <%= f.submit '登録', class: 'form-control mt-3 btn btn-primary'%>
+<%end%>

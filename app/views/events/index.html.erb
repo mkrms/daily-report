@@ -1,0 +1,20 @@
+<%= link_to '新規作成', new_event_path, class: 'btn btn-success my-4 form-control'%>
+
+<div id="calendar" class = "col-8 mx-auto"></div>
+
+    <table class="table">
+    <tr>
+    <th>開始日</th>
+    <th>終了日</th>
+    <th>タイトル</th>
+    <th></th>
+    </tr>
+<% @events.each do |event| %>
+    <tr>
+    <td><%= event.start_date.strftime('%-m月%-d日(%a)') %></td>
+    <td><%= event.end_date.strftime('%-m月%-d日(%a)') %></td>
+    <td><%= event.title %></td>
+    <td><%= link_to '詳細', event_path(event.id)%></td>
+    </tr>
+<% end %>
+</table>

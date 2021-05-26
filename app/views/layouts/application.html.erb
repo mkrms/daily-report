@@ -9,11 +9,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-turbolinks='false'>
     <nav class="navbar navbar-dark bg-dark sticky-top mb-3">
       <a href="/" class="navbar-brand">Daily Report :RwG</a>
-
       <div class='float-right'>
+      <%= link_to 'カレンダー', events_path, class: 'text-light'%>
       <%= link_to 'Top', root_path, class: 'btn btn-light'%>
       </div>
     </nav>

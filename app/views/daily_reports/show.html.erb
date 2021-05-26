@@ -11,3 +11,35 @@
 
 <%= link_to '削除', daily_report_path, method: :delete, class: 'btn btn-danger float-right'%>
 <%= link_to '編集', edit_daily_report_path, class: 'btn btn-secondary float-right mr-3'%>
+
+
+
+<%= form_for [@daily_report, @comment] do |c| %>
+    <div class ="form-group pt-5">
+        <label>名前：</label>
+        <%= c.text_field :comment_name, class: 'form-control col-3 mb-2'%>
+        <label>コメント：</label>
+        <%= c.text_field :comment_content, class: 'form-control pr-5' %>
+        <%= c.hidden_field :daily_report_id, value:@daily_report.id %>
+        <%= c.submit "コメント送信", class:'btn btn-success float-right mt-3 mb-3'%>
+    </div>
+<% end %>
+
+<table class="table">
+    <thead>
+        <tr>
+        <th>送信者</th>
+        <th>コメント</th>
+        <th>　　</th>
+        </tr>
+    </thead>
+
+
+    <% @comments.each do |comment| %>
+        <tr>
+        <td><%= comment.comment_name%></td>
+        <td><%= comment.comment_content%></td>
+        <td><%= link_to "削除", daily_report_comment_path(@daily_report, comment), method: :delete%></td>
+        </tr>
+    <% end %>
+</table>

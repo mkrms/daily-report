@@ -40,6 +40,9 @@ gem 'jquery-rails'
 
 gem 'trix'
 
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+
 group :production do
   gem 'pg'
 end

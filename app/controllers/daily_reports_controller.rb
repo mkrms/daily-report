@@ -12,6 +12,8 @@ class DailyReportsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @daily_report.comments
   end
 
  def create
