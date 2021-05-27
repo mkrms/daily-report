@@ -1,3 +1,4 @@
+<div class ='container'>
 <%=form_for (@daily_report) do |f| %>
     <label>投稿者</label>
     <div class = 'form-group pb-3'>
@@ -7,30 +8,56 @@
     <hr>
 
     <div class = 'row py-3'>
-    <div class = 'col-md-4'>
-    <label>タイトル</label>
-    <div class ='form-group'>
-        <%= f.select :title, [['スクリム', 'スクリム'], ['研究', '研究'], ['その他', 'その他']], include_blank: "選択して下さい", class: 'form-control'%>
-    </div>
-    </div>
+        <div class = 'col-md-5 text-center'>
+            <div class ='form-group'>
+            <select name="daily_report[title]" id="daily_report_title" onchange="func(this);">
+                <option value="">選択して下さい</option>
+                <option value="スクリム">スクリム</option>
+                <option value="研究">研究</option>
+                <option value="その他">その他</option>
+            </select>
+                <%#= f.select :title, [['スクリム', 'スクリム'], ['研究', '研究'], ['その他', 'その他']], include_blank: "選択して下さい", class: 'form-control', onchange: 'func(this);'%>
+            </div>
+        </div>
 
-    <div class = 'col-md-4'>
-        <label>日付</label>
-        <div class ='form-group'>
-            <%= f.date_select :date, class: 'form-control'%>
+        <div class = 'col-md-4 mx-auto'>
+            <div class ='form-group'>
+                <%= f.date_field :date, value: Time.now.strftime("%Y-%m-%d"), class: 'form-control w-50'%>
+            </div>
         </div>
     </div>
+    <div id = 'scrim'>
+        <div class ='row'>
+            <div class ='col-md-3 form-inline text-center'>
+                対戦相手Tire：<%= f.number_field :tire, class: 'form-control w-25', min: 1, max: 4, value: 4%>
+            </div>
 
-    <div class = 'col-md-4'>
-        <label>チームを選択してください</label>
-        <div class ='form-group'>
-            A <label><%= f.radio_button :team, 'A'%></label>　　
-            B <label><%= f.radio_button :team, 'B'%></label>
+            <div class = 'col-md-6'>
+                <div class ='form-inline'>
+                    獲得ラウンド：
+                    <%= f.number_field :winround, class: 'form-control w-25', min: 0, max: 12, value: 0, onchange: 'decider(this);'%>
+                     vs 
+                    <%= f.number_field :loseround, class: 'form-control w-25', min: 0, max: 12, value: 0, onchange: 'decider(this);'%>
+                    ：敗北ラウンド
+                </div>
+            </div>
+            
+            <div class = 'col-md-3 text-center'>
+                <div class ='btn-group btn-group-toggle' data-toggle = 'buttons'>
+                    <label class ='btn btn-outline-secondary'>
+                        <%= f.radio_button :decide, 'win', id: 'win_button'%>Win
+                    </label>
+                    <label class ='btn btn-outline-secondary'>
+                        <%= f.radio_button :decide, 'lose', id: 'lose_button'%>Lose
+                    </label>
+                    <label class ='btn btn-outline-secondary'>
+                        <%= f.radio_button :decide, 'drow', id: 'drow_button'%>Drow
+                    </label>
+                </div>
+            </div>
+
         </div>
     </div>
-
-    </div>
-
     <hr>
 
         
@@ -40,3 +67,34 @@
         <%= f.submit '登録', class: 'form-control mt-3 btn btn-primary'%>
     </div>
 <%end%>
+</div>
+
+<script language="javascript" type="text/javascript">
+    document.getElementById('scrim').style.display = "none";
+    var title = document.getElementById('daily_report_title');
+    function func(){
+        if(title.value == "スクリム"){
+            document.getElementById('scrim').style.display = "";
+        }else if (title.value != "スクリム"){
+            document.getElementById('scrim').style.display = "none";
+        }
+    }
+
+    function decider(){
+        var win = document.getElementById('daily_report_winround');
+        var lose = document.getElementById('daily_report_loseround');
+        var winbutton = document.getElementById('win_button');
+        var losebutton = document.getElementById('lose_button');
+        var drowbutton = document.getElementById('drow_button');
+            if(Number(win.value) > Number(lose.value)){
+                winbutton.click();
+                winbutton.checked = true;
+            }else if (Number(win.value) < Number(lose.value)){
+                losebutton.click();
+                losebutton.checked = true;
+            }else if(Number(win.value) == Number(lose.value)){
+                drowbutton.click();
+                drowbutton.checked = true;
+            }
+        }
+</script>

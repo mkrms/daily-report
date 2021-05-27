@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <%= render 'logined'%>
+<% else %>
+  <%= render 'nologin'%>
+<% end %>
+
+<footer class ="bg-dark">
+    <div class ="container">
+      <div class ="col-md-6 mx-auto text-white pb-5 pt-3 mt-3">
+        <li>
+          お問い合わせはTwitterのDMまで
+        <a href = "https://twitter.com/mkrms_s" class="fab fa-twitter-square fa-3x text-white float-right"></a>
+        </li>
+      </div>
+        <p class ="text-center text-white my-0">Niiyama keisuke</p>
+    </div>
+</footer>
+

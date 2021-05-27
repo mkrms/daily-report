@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  root 'daily_reports#index'
+  devise_for :users
+  root 'homes#index'
   
+  resources :homes do
+    collection do
+      get 'search'
+      get 'about'
+    end
+  end
   resources :events
   resources :daily_reports do
     resources :comments, only: [:create, :destroy]

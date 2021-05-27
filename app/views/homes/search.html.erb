@@ -1,0 +1,20 @@
+<table class = 'table container'>
+<tr>
+    <th>順位</th>
+    <th>チーム名</th>
+    <th>レート</th>
+</tr>
+<% User.page(params[:page]).per(20).order(rate: 'DESC').each.with_index(1) do |team, i| %>
+<tr>
+    <td>
+    <%= i%>
+    </td>
+    <td>
+    <%= team.teamname%>
+    </td>
+    <td>
+    <%= team.rate.to_i%>
+    </td>
+</tr>
+<% end %>
+</table>

@@ -11,15 +11,41 @@
 
   <body data-turbolinks='false'>
     <nav class="navbar navbar-dark bg-dark sticky-top mb-3">
-      <a href="/" class="navbar-brand">Daily Report :RwG</a>
+      <a href="/" class="navbar-brand">Sixer</a>
+      <% if user_signed_in? %>
+      <div class ='navbar navber-nav ml-auto mr-3'>
+        <%= link_to 'ランキング', search_homes_path, class: 'nav-item text-light px-3'%>
+        <%= link_to 'カレンダー', events_path, class: 'nav-item text-light px-3'%>
+        <%= link_to 'レポート', daily_reports_path, class: 'nav-item text-light px-3'%>
+        <a href='/' class='nav-item text-light px-3'>Top</a>
+      </div>
+      <%end%>
+
       <div class='float-right'>
-      <%= link_to 'カレンダー', events_path, class: 'text-light'%>
-      <%= link_to 'Top', root_path, class: 'btn btn-light'%>
+        <div class="dropdown dropleft">
+        <button type="button" id="dropdown1"
+      class="btn btn-secondary dropdown-toggle"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">
+      menu
+      </button>
+          <div class="dropdown-menu">
+          <% if user_signed_in? %>
+              <a href='/' class='dropdown-item'>Top</a>
+              <%= link_to 'ランキング', search_homes_path, class: 'dropdown-item'%>
+              <%= link_to 'カレンダー', events_path, class: 'dropdown-item'%>
+              <%= link_to 'レポート', daily_reports_path, class: 'dropdown-item'%>
+            <%= link_to 'プロフィール変更', edit_user_registration_path, class: 'dropdown-item'%>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'%>
+          <% else %>
+              <%= link_to 'サインアップ', new_user_registration_path, class: 'dropdown-item' %>
+              <%= link_to 'ログイン', new_user_session_path, class: 'dropdown-item' %>
+          <% end %>
+          </div>
+        </div>
       </div>
     </nav>
-
-    <div class = 'container nav-justified'>
     <%= yield %>
-    </div>
   </body>
 </html>

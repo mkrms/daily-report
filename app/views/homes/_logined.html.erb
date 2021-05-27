@@ -1,0 +1,29 @@
+<%#= line_chart current_user.pluck(:rate, :date), xmin: Time.current.prev_month, xmax: Time.current %>
+
+<div class="jumbotron" style="">
+  <h1 class ="text-center display-3">
+    <%= current_user.teamname %>
+  </h1>
+  <hr>
+  <h1 class ="text-center display-2">
+    <%= current_user.rate.to_i %>
+  </h1>
+  <hr>
+  <h1 class ="text-center display-4">
+  予想Tire：
+  <% if (0..1500).include? current_user.rate%>
+  4
+  <% elsif (1501..2000).include? current_user.rate %>
+  3
+  <% elsif (2001..2500).include? current_user.rate %>
+  2
+  <% elsif (2501..99999).include? current_user.rate %>
+  1
+  <% end %>
+  </h1>
+</div>
+
+<div class = 'container'>
+<%= link_to '活動を記録する', daily_reports_path, class: 'btn btn-success form-control mb-3'%>
+
+</div>
